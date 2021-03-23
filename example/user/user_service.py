@@ -1,4 +1,4 @@
-from example.user.user_model import UserData
+from example.user.user import UserData, User
 from example.user.user_repository import UserRepository
 class UserService:
 
@@ -12,3 +12,11 @@ class UserService:
             raise Exception(f"user with email {existing_user.email} exists")
 
         return self.user_repo.create_user(user_data)
+
+    def get_user(self, id: str) -> User:
+        user = self.user_repo.get_user(id)
+
+        if user is None:
+            raise Exception(f"user with id {id} doesn't exist")
+
+        return user

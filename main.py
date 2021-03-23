@@ -22,3 +22,16 @@ def add_user(user_data: UserData):
 
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
+@app.get("/user/{user_id}", status_code=200)
+def get_user(user_id: str):
+    try:
+        created_user = user_service.get_user(user_id)
+
+        return {
+            "status": "ok",
+            "data": created_user
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
