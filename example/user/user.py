@@ -32,7 +32,17 @@ class User(BaseModel):
         return User(**user_dict)
 
 def split_fullname(fullname: str) -> Tuple[str, str, str]:
-    return ("", "", "")
+    names = fullname.split(" ")
+    middle_name = " ".join(names[1:len(names)-1]) if len(names) >= 3 else ""
+    first_name = names[0]
+    last_name = names[len(names)-1] if len(names) > 1 else ""
+
+    return (first_name, middle_name, last_name)
 
 def create_initial_name(fullname) -> str:
-    return ""
+    trimmed_fullname = sub(r"[^\w\s]", "", fullname) # replace punctuation with empty string
+    print(trimmed_fullname)
+    names = trimmed_fullname.split(" ")
+    initials = [n.capitalize()[0] for n in names if len(n) > 0]
+
+    return "".join(initials)
