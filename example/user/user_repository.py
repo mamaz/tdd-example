@@ -3,6 +3,9 @@ from example.user.user import User, UserData
 from example.database.db import DB
 
 class UserRepository:
+    """
+    Repository class for User object
+    """
     def __init__(self, db: DB):
         self.db = db
 
@@ -12,7 +15,7 @@ class UserRepository:
         return User(**usr_dict) if usr_dict is not None else None
 
     def get_user_by_email(self, email: str) -> Union[User, None]:
-        user_dict = self.db.get_by_key_value({"email": email})
+        user_dict = self.db.get_by_key_value(key="email", value=email)
 
         return User(**user_dict) if user_dict is not None else None
 

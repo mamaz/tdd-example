@@ -1,3 +1,4 @@
+from typing import Union
 from example.database.db import FakeDB
 from example.user.user_repository import UserRepository
 from example.user.user import UserData, User

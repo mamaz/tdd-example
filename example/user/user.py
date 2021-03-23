@@ -2,7 +2,7 @@ from __future__ import annotations
 from uuid import uuid4
 from typing import Tuple
 from pydantic import BaseModel
-
+from re import sub
 class UserData(BaseModel):
     fullname: str
     email: str
@@ -26,7 +26,7 @@ class User(BaseModel):
             "first_name": first_name,
             "middle_name": middle_name,
             "last_name": last_name,
-            "initial_name": initial_name(fullname)
+            "initial_name": create_initial_name(fullname)
         }
 
         return User(**user_dict)
@@ -34,5 +34,5 @@ class User(BaseModel):
 def split_fullname(fullname: str) -> Tuple[str, str, str]:
     return ("", "", "")
 
-def initial_name(fullname) -> str:
+def create_initial_name(fullname) -> str:
     return ""

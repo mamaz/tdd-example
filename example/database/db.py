@@ -1,3 +1,5 @@
+from typing import Union
+
 class DB:
     def get(self, id: str):
         pass
@@ -12,19 +14,25 @@ class DB:
         pass
 
 class FakeDB(DB):
-    def __init__(self, options):
+    """
+    Fake class for faking database operation, like queries
+
+    Args:
+        DB (DB): Base class for database operation
+    """
+    def __init__(self, options: dict = dict()):
         self.options = options
         self.data = dict()
 
     def get(self, id: str) -> Union[dict, None]:
         return self.data.get(id, None)
 
-    def get_by_key_value(self, key_value: dict) -> Union[dict, None]:
-        for key in key_value.keys():
-            value = self.data.get(key, None)
+    def get_by_key_value(self, key: str, value: str) -> Union[dict, None]:
+        for id, user_dict in self.data.items():
+            value_fetched = user_dict.get(key, None)
 
-            if value is not None:
-                return value
+            if value_fetched == value:
+                return user_dict
 
         return None
 

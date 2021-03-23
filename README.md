@@ -33,9 +33,9 @@ For example:
 
 - Ebet Kadarusman > EK
 
-- Mirza Akbar Mulya Sudradjat > MAMS
+- Ricardo Izecson dos Santos Leite > RIDSL
 
-- Robert Downey, Jr. > RDJ
+- Robert Downey, Jr > RDJ
 
 #### Middlename is filled with any names between firstname and lastname
 
@@ -48,6 +48,7 @@ Fullname: Deodatus Andreas Deddy Cahyadi Sunjoyo
 - Middlename: Andreas Deddy Cahyadi
 
 - Lastname: Sunjoyo
+
 
 Data will be sent to the server in the following format in JSON
 
