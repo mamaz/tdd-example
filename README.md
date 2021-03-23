@@ -37,11 +37,16 @@ For example:
 
 - Robert Downey, Jr > RDJ
 
-#### Middlename is filled with any names between firstname and lastname
+#### First name, Middle Name, and Last Name 
 
-For example:
+1. First Name, Middle Name, and Last Name is from first, second, and third words of the name, if the fullname consists of 3 words.
+2. Middle Name is empty string if fullname consists of 1 or 2 words.
+3. Last Name is always the last words of the fullname. 
+4. Middle Name is filled with any names between firstname and lastname
 
-Fullname: Deodatus Andreas Deddy Cahyadi Sunjoyo
+Examples:
+
+**Fullname: Deodatus Andreas Deddy Cahyadi Sunjoyo**
 
 - Firstname: Deodatus
 
@@ -49,6 +54,26 @@ Fullname: Deodatus Andreas Deddy Cahyadi Sunjoyo
 
 - Lastname: Sunjoyo
 
+
+**Fullname: Akira Toriyama**
+
+- Firstname: Akira
+
+- Middlename: <empty string>
+
+- Lastname: Toriyama
+
+
+**Fullname: Rudy**
+
+- Firstname: Rudy
+
+- Middlename: <empty string>
+
+- Lastname: <empty string>
+
+
+### Data Format
 
 Data will be sent to the server in the following format in JSON
 
@@ -77,7 +102,7 @@ Upon completion server will return in JSON format
 
 ## Usage
 
-### Prerequisite
+### Prerequisites
 
 - Python version 3.8 or above
 
@@ -87,6 +112,8 @@ Upon completion server will return in JSON format
 
 - uvicorn
 
+- GNU make
+
 ### Install Dependencies
 
 ```shell
@@ -95,8 +122,16 @@ pip install -r requirements.txt
 
 ### Running Tests
 
+Running all tests.
+
 ```shell
 make test
+```
+
+Running per test module, let's say we want to test `test_user_initial_name` module.
+
+```shell
+pytest -vv example/tests/test_user_initial_name.py
 ```
 
 ### Running The Application
