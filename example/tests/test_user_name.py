@@ -21,19 +21,14 @@ def test_should_return_empty_string_if_fullname_is_empty():
     (first_name, middle_name, last_name) = split_fullname("")
     assert first_name == "" and middle_name == "" and last_name == ""
 
-# HOMEWORK:
-# Checking against null values
-# def test_should_throw_exception_if_it_has_null_values():
-#     with pytest.raises(Exception) as e:
-#         split_fullname(None)
+# HOMEWORK
 
-#
-# HOMEWORK:
-# How about Robert Downey, Jr
-# It should be
-# Firstname: Robert
-# Middlename: ""
-# Lastname: Downey
-# def test_should_ignore_punctuation():
-#     (first_name, middle_name, last_name) = split_fullname("Robert Downey, Jr.")
-#     assert first_name == "Robert" and middle_name == "" and last_name == "Downey"
+@pytest.mark.skip(reason="for homework")
+def test_should_throw_exception_if_it_has_null_values():
+    with pytest.raises(Exception) as e:
+        split_fullname(None)
+
+@pytest.mark.skip(reason="for homework")
+def test_should_ignore_punctuation():
+    (first_name, middle_name, last_name) = split_fullname("Robert Downey, Jr.")
+    assert first_name == "Robert" and middle_name == "" and last_name == "Downey"
