@@ -3,6 +3,7 @@ from uuid import uuid4
 from typing import Tuple
 from pydantic import BaseModel
 from re import sub
+
 class UserData(BaseModel):
     fullname: str
     email: str
