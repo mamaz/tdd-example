@@ -1,3 +1,4 @@
+from typing import Union
 from example.user.user import UserData, User
 from example.user.user_repository import UserRepository
 class UserService:
@@ -13,10 +14,5 @@ class UserService:
 
         return self.user_repo.create_user(user_data)
 
-    def get_user(self, id: str) -> User:
-        user = self.user_repo.get_user(id)
-
-        if user is None:
-            raise Exception(f"user with id {id} doesn't exist")
-
-        return user
+    def get_user(self, id: str) -> Union[User, None]:
+        return self.user_repo.get_user(id)

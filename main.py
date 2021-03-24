@@ -26,11 +26,11 @@ def add_user(user_data: UserData):
 @app.get("/user/{user_id}", status_code=200)
 def get_user(user_id: str):
     try:
-        created_user = user_service.get_user(user_id)
+        user = user_service.get_user(user_id)
 
         return {
             "status": "ok",
-            "data": created_user
+            "data": user
         }
 
     except Exception as e:

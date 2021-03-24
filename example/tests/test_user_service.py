@@ -1,14 +1,44 @@
-from example.user.user import UserData
+import pytest
+from example.user.user import User, UserData
+from example.user.user_service import UserService
 from example.user.user_repository import UserRepository
+from example.database.db import FakeDB
 
-class UserService:
-    def __init__(self, user_repo: UserRepository):
-        self.user_repo = user_repo
+def test_it_should_be_able_to_create_user():
+    fakedb = FakeDB()
+    user_repo = UserRepository(fakedb)
+    service = UserService(user_repo)
 
-    def create_user(self, user_data: UserData):
-        existing_user = self.user_repo.get_user({"email": user_data.email})
+    new_user = service.create_user(user_data=UserData(
+        fullname="Hisma Mulya",
+        email="hisma.mulya@gmail.com"
+    ))
+    assert new_user is not None
 
-        if existing_user is not None:
-            raise Exception(f"there's an existing user with email {user_data.email}, please create user with another email")
+def test_it_should_be_able_to_raise_exception_if_theres_existing_user_on_create():
+    fakedb = FakeDB()
+    user_repo = UserRepository(fakedb)
+    service = UserService(user_repo)
 
-        return self.user_repo.create_user(user_data)
+    new_user = service.create_user(user_data=UserData(
+            fullname="Hisma Mulya",
+            email="hisma.mulya@gmail.com"
+        ))
+    with pytest.raises(Exception) as e:
+        service.create_user(user_data=UserData(
+            fullname="Mamazo",
+            email="hisma.mulya@gmail.com"
+        ))
+
+def test_it_should_be_able_to_get_user():
+    fakedb = FakeDB()
+    user_repo = UserRepository(fakedb)
+    service = UserService(user_repo)
+
+    new_user = service.create_user(user_data=UserData(
+            fullname="Hisma Mulya",
+            email="hisma.mulya@gmail.com"
+        ))
+    fetched_user = service.get_user(new_user.id)
+
+    assert new_user.dict() == fetched_user.dict()
